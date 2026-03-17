@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_color"
+        android:title="Color de fondo">
+        <menu>
+            <item android:id="@+id/color_azul" android:title="Azul" />
+            <item android:id="@+id/color_verde" android:title="Verde" />
+            <item android:id="@+id/color_amarillo" android:title="Amarillo Claro" />
+            <item android:id="@+id/color_blanco" android:title="Reset (Blanco)" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menu_ratio"
+        android:title="Cambiar Ratio"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_acerca"
+        android:title="Acerca de"
+        app:showAsAction="never" />
+</menu>
