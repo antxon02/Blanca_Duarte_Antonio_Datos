@@ -127,7 +127,7 @@ class Ejercicio1Activity : AppCompatActivity() {
             binding.mainLayout.setBackgroundColor(Color.parseColor(colorGuardado))
         } catch (e: Exception) { }
 
-        // Cargar Ratio
+
         val ratioGuardado = sharedPrefs.getFloat("ratio_guardado", 0.92f)
         ratioConversion = ratioGuardado.toDouble()
     }
