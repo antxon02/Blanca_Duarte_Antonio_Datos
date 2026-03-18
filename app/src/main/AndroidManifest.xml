@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Ejercicio1Activity" />
+        <activity android:name=".Ejercicio1Activity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
