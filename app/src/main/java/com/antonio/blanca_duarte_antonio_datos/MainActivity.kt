@@ -16,5 +16,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Ejercicio1Activity::class.java)
             startActivity(intent)
         }
+
+        val btn2 = findViewById<android.widget.Button>(R.id.btnEjercicio2)
+
+        btn2.setOnClickListener {
+            val intent = Intent(this, Ejercicio2Activity::class.java)
+            startActivity(intent)
+        }
     }
 }
