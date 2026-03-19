@@ -35,11 +35,9 @@ class Ejercicio2Activity : AppCompatActivity() {
     private lateinit var binding: ActivityEjercicio2Binding
     private lateinit var sharedPrefs: SharedPreferences
 
-    // Cola de alarmas (FIFO: First In, First Out)
     private val colaAlarmas: Queue<AlarmaDatos> = LinkedList()
     private var timerActual: CountDownTimer? = null
 
-    // Variables de configuración
     private var nombreFichero = "alarmas.txt"
     private var sonidoActivado = true
     private val CHANNEL_ID = "canal_alarmas_fit"
@@ -53,7 +51,6 @@ class Ejercicio2Activity : AppCompatActivity() {
         sharedPrefs = getSharedPreferences("PrefsAlarmas", Context.MODE_PRIVATE)
         cargarPreferencias()
 
-        // Cargar contenido del fichero en el EditText al iniciar
         leerFicheroYMostrar()
 
         binding.btnGuardarYArrancar.setOnClickListener {
@@ -63,7 +60,6 @@ class Ejercicio2Activity : AppCompatActivity() {
             }
         }
 
-        // Pedir permiso de notificaciones si es Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
@@ -71,11 +67,9 @@ class Ejercicio2Activity : AppCompatActivity() {
         }
     }
 
-    // --- LÓGICA DEL TEMPORIZADOR ---
 
     private fun prepararAlarmas() {
         colaAlarmas.clear()
-        // Parsear lo que hay en el EditText para llenar la cola
         val lineas = binding.etFicheroContenido.text.toString().split("\n")
 
         for (linea in lineas) {
@@ -86,13 +80,10 @@ class Ejercicio2Activity : AppCompatActivity() {
                     val msg = partes[1].trim()
                     val sound = if (partes.size > 2) partes[2].trim() else "default"
 
-                    // Limitar a 5 alarmas máximo según enunciado
                     if (colaAlarmas.size < 5) {
                         colaAlarmas.add(AlarmaDatos(min, msg, sound))
                     }
-                } catch (e: Exception) {
-                    // Ignorar líneas mal formadas
-                }
+                } catch (e: Exception) { }
             }
         }
         binding.tvAlarmasRestantes.text = "Alarmas pendientes: ${colaAlarmas.size}"
@@ -105,12 +96,10 @@ class Ejercicio2Activity : AppCompatActivity() {
             return
         }
 
-        val alarmaActual = colaAlarmas.poll() // Sacar la siguiente alarma
-        binding.tvAlarmasRestantes.text = "Alarmas pendientes: ${colaAlarmas.size + 1}" // +1 porque la actual está corriendo
+        val alarmaActual = colaAlarmas.poll()
+        binding.tvAlarmasRestantes.text = "Alarmas pendientes: ${colaAlarmas.size + 1}"
 
-        // Convertir minutos a milisegundos
-        // PARA PRUEBAS RÁPIDAS: Multiplicar por 1000 (segundos) en vez de 60000 (minutos)
-        val tiempoMilis = alarmaActual!!.minutos * 1000L // * 60000L para minutos reales
+        val tiempoMilis = alarmaActual!!.minutos * 1000L
 
         timerActual = object : CountDownTimer(tiempoMilis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -121,7 +110,7 @@ class Ejercicio2Activity : AppCompatActivity() {
 
             override fun onFinish() {
                 ejecutarAlarma(alarmaActual)
-                lanzarSiguienteAlarma() // RECURSIVIDAD: Lanza la siguiente
+                lanzarSiguienteAlarma()
             }
         }.start()
     }
@@ -136,19 +125,16 @@ class Ejercicio2Activity : AppCompatActivity() {
             } catch (e: Exception) { }
         }
 
-        // 2. Notificación
         mostrarNotificacion(alarma.mensaje)
         Toast.makeText(this, "ALARMA: ${alarma.mensaje}", Toast.LENGTH_LONG).show()
     }
 
-    // --- FICHEROS ---
 
     private fun leerFicheroYMostrar() {
         val fichero = File(getExternalFilesDir(null), nombreFichero)
         if (fichero.exists()) {
             binding.etFicheroContenido.setText(fichero.readText())
         } else {
-            // Texto por defecto para probar
             val demo = "1, Calentamiento, sound1\n2, Carrera suave, sound2\n1, Sprint, sound3"
             binding.etFicheroContenido.setText(demo)
         }
@@ -166,7 +152,6 @@ class Ejercicio2Activity : AppCompatActivity() {
         }
     }
 
-    // --- NOTIFICACIONES ---
 
     private fun mostrarNotificacion(mensaje: String) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return
@@ -197,7 +182,6 @@ class Ejercicio2Activity : AppCompatActivity() {
         }
     }
 
-    // --- MENÚ Y PREFERENCIAS ---
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_alarmas, menu)
@@ -232,7 +216,7 @@ class Ejercicio2Activity : AppCompatActivity() {
                 nombreFichero = input.text.toString()
                 if (!nombreFichero.endsWith(".txt")) nombreFichero += ".txt"
                 sharedPrefs.edit().putString("filename", nombreFichero).apply()
-                leerFicheroYMostrar() // Recargar si cambiamos de fichero
+                leerFicheroYMostrar()
             }
             .show()
     }
