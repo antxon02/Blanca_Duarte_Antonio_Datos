@@ -27,6 +27,9 @@
         <activity android:name=".Ejercicio1Activity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Ejercicio2Activity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            tools:ignore="MissingClass" />
+
     </application>
 
 </manifest>
