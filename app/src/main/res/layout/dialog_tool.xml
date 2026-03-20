@@ -4,28 +4,44 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp">
-    
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre" />
 
-    <EditText
-        android:id="@+id/etDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Descripción" />
+    <EditText android:id="@+id/etNombre" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nombre" />
+    <EditText android:id="@+id/etDesc" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Descripción" />
+    <EditText android:id="@+id/etUrl" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enlace Web" />
+    <EditText android:id="@+id/etCat" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Categoría" />
 
-    <EditText
-        android:id="@+id/etUrl"
-        android:layout_width="match_parent"
+    <!-- SELECCIÓN DE IMAGEN -->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enlace Web (http...)" />
+        android:text="Elige un icono:"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etCat"
+    <RadioGroup
+        android:id="@+id/rgIconos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categoria" />
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bot"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerebro"/>
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Web"/>
+    </RadioGroup>
+
 </LinearLayout>

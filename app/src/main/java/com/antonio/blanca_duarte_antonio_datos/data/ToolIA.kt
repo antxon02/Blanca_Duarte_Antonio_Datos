@@ -5,5 +5,6 @@ data class ToolIA(
     var nombre: String,
     var descripcion: String,
     var url: String,
-    var categoria: String
+    var categoria: String,
+    var imagen: Int
 )

@@ -11,17 +11,19 @@ class AdminSQL(context: Context) : SQLiteOpenHelper(context, "BaseDatosIA", null
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // En este ejercicio no gestionamos versiones
     }
 
     fun agregarHerramienta(tool: ToolIA): Long {
         val db = this.writableDatabase
-        val values = ContentValues().apply {
-            put("nombre", tool.nombre)
-            put("descripcion", tool.descripcion)
-            put("url", tool.url)
-            put("categoria", tool.categoria)
-        }
+
+        val values = ContentValues()
+
+        values.put("nombre", tool.nombre)
+        values.put("descripcion", tool.descripcion)
+        values.put("url", tool.url)
+        values.put("categoria", tool.categoria)
+        values.put("imagen", tool.imagen)
+
         val id = db.insert("herramientas", null, values)
         db.close()
         return id
@@ -30,33 +32,40 @@ class AdminSQL(context: Context) : SQLiteOpenHelper(context, "BaseDatosIA", null
     fun obtenerHerramientas(): MutableList<ToolIA> {
         val lista = mutableListOf<ToolIA>()
         val db = this.readableDatabase
+
         val cursor = db.rawQuery("SELECT * FROM herramientas", null)
 
         if (cursor.moveToFirst()) {
             do {
-               val tool = ToolIA(
-                   id = cursor.getInt(0),
-                   nombre = cursor.getString(1),
-                   descripcion = cursor.getString(2),
-                   url = cursor.getString(3),
-                   categoria = cursor.getString(4)
-               )
-               lista.add(tool)
+                val tool = ToolIA(
+                    id = cursor.getInt(0),
+                    nombre = cursor.getString(1),
+                    descripcion = cursor.getString(2),
+                    url = cursor.getString(3),
+                    categoria = cursor.getString(4),
+                    imagen = cursor.getInt(5)
+                )
+
+                lista.add(tool)
             } while (cursor.moveToNext())
         }
+
         cursor.close()
         db.close()
+
         return lista
     }
 
     fun editarHerramienta(tool: ToolIA) {
         val db = this.writableDatabase
-        val values = ContentValues().apply {
-            put("nombre", tool.nombre)
-            put("descripcion", tool.descripcion)
-            put("url", tool.url)
-            put("categoria", tool.categoria)
-        }
+
+        val values = ContentValues()
+        values.put("nombre", tool.nombre)
+        values.put("descripcion", tool.descripcion)
+        values.put("url", tool.url)
+        values.put("categoria", tool.categoria)
+        values.put("imagen", tool.imagen)
+
         db.update("herramientas", values, "id=?", arrayOf(tool.id.toString()))
         db.close()
     }

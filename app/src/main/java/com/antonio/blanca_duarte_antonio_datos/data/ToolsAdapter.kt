@@ -17,6 +17,7 @@ class ToolsAdapter(
         val tvNombre: TextView = view.findViewById(R.id.tvNombre)
         val tvDesc: TextView = view.findViewById(R.id.tvDesc)
         val tvCat: TextView = view.findViewById(R.id.tvCategoria)
+        val ivIcono: android.widget.ImageView = view.findViewById(R.id.ivIcono)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToolViewHolder {
@@ -29,7 +30,9 @@ class ToolsAdapter(
         holder.tvNombre.text = item.nombre
         holder.tvDesc.text = item.descripcion
         holder.tvCat.text = item.categoria
-        
+
+        holder.ivIcono.setImageResource(item.imagen)
+
         holder.itemView.setOnClickListener { onClick(item) }
 
         holder.itemView.setOnLongClickListener {
