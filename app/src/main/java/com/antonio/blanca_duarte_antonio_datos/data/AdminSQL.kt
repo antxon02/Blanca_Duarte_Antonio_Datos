@@ -5,12 +5,15 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class AdminSQL(context: Context) : SQLiteOpenHelper(context, "BaseDatosIA", null, 1) {
+class AdminSQL(context: Context) : SQLiteOpenHelper(context, "BaseFinalIA", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE herramientas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, url TEXT, categoria TEXT)")
+        val sql = "CREATE TABLE herramientas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, url TEXT, categoria TEXT, imagen INTEGER)"
+        db?.execSQL(sql)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        db?.execSQL("DROP TABLE IF EXISTS herramientas")
+        onCreate(db)
     }
 
     fun agregarHerramienta(tool: ToolIA): Long {

@@ -1,3 +1,5 @@
+package com.antonio.blanca_duarte_antonio_datos
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.antonio.blanca_duarte_antonio_datos.R
 import com.antonio.blanca_duarte_antonio_datos.data.AdminSQL
 import com.antonio.blanca_duarte_antonio_datos.data.ToolIA
 import com.antonio.blanca_duarte_antonio_datos.data.ToolsAdapter
 import com.antonio.blanca_duarte_antonio_datos.databinding.ActivityEjercicio3Binding
 
 class Ejercicio3Activity : AppCompatActivity() {
-
     private lateinit var binding: ActivityEjercicio3Binding
     private lateinit var db: AdminSQL
     private lateinit var adapter: ToolsAdapter
@@ -84,8 +84,10 @@ class Ejercicio3Activity : AppCompatActivity() {
 
     private fun cargarDatos() {
         listaTools.clear()
-
         listaTools.addAll(db.obtenerHerramientas())
+
+        Toast.makeText(this, "Encontradas: ${listaTools.size}", Toast.LENGTH_LONG).show()
+
         adapter.notifyDataSetChanged()
     }
 
@@ -148,7 +150,7 @@ class Ejercicio3Activity : AppCompatActivity() {
                 db.editarHerramienta(tool)
                 Toast.makeText(this, "Actualizado correctamente", Toast.LENGTH_SHORT).show()
             }
-            
+
             cargarDatos()
         }
 
