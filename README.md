@@ -6,6 +6,10 @@ Es una aplicación de un menu, el cual contiene 3 bótones uno por cada ejercici
 
 ## 🏠 1. Menú Principal (`MainActivity`)
 
+<p align="center">
+  <img src="./screenshots/Menu.png" alt="Menu de la aplicación" width="100%">
+</p>
+
 Es la puerta de entrada de la aplicación.
 *   **Diseño (XML):** Utiliza un `LinearLayout` vertical con gravedad centrada para mostrar una lista ordenada de botones.
 *   **Lógica:** Cada botón tiene un `OnClickListener` que lanza un `Intent` explícito para navegar a la actividad correspondiente (`Ejercicio1Activity`, etc.).
@@ -14,6 +18,10 @@ Es la puerta de entrada de la aplicación.
 ---
 
 ## 💱 2. Ejercicio 1: Conversor de Moneda
+
+<p align="center">
+  <img src="./screenshots/Ejercicio 1.png" alt="Captura del Conversor" width="300">
+</p>
 
 Una herramienta para convertir entre Euros y Dólares en tiempo real con opciones de personalización.
 
@@ -33,6 +41,10 @@ Una herramienta para convertir entre Euros y Dólares en tiempo real con opcione
 ---
 
 ## ⏰ 3. Ejercicio 2: Alarmas Consecutivas
+
+<p align="center">
+  <img src="./screenshots/Ejercicio 2.png" alt="Captura de Alarmas" width="300">
+</p>
 
 Un sistema de temporizadores encadenados que lee una configuración desde un fichero de texto.
 
@@ -54,6 +66,10 @@ Un sistema de temporizadores encadenados que lee una configuración desde un fic
 ---
 
 ## 🛠️ 4. Ejercicio 3: Base de Datos de Herramientas IA
+
+<p align="center">
+  <img src="./screenshots/Ejercicio 3.png" alt="Captura Base de Datos" width="300">
+</p>
 
 Un gestor CRUD (Crear, Leer, Actualizar, Borrar) completo utilizando una base de datos local.
 
