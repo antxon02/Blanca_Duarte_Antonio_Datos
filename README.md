@@ -7,7 +7,7 @@ Es una aplicación de un menu, el cual contiene 3 bótones uno por cada ejercici
 ## 🏠 1. Menú Principal (`MainActivity`)
 
 <p align="center">
-  <img src="./screenshots/Menu.png" alt="Menu de la aplicación" width="100%">
+  <img src="./screenshots/Menu.png" alt="Menu de la aplicación" width="300">
 </p>
 
 Es la puerta de entrada de la aplicación.
